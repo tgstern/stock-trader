@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>Account Options</h1>
+    </div>
+    <br>
+    <form method="POST">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="account" id="reset" value="reset">
+            <label class="form-check-label" for="reset">
+                Reset Account
+            </label>
+        </div>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="account" id="delete" value="delete">
+            <label class="form-check-label" for="delete">
+                Delete Account
+            </label>
+        </div>
+        <br>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

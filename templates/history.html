@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>Transaction History</h1>
+    </div>
+    <br>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Symbol</th>
+                <th>Stock Name</th>
+                <th>Purchase Price</th>
+                <th>Sold Price</th>
+                <th>Shares</th>
+                <th>Transaction Total</th>
+                <th>Transaction Date</th>
+            </tr>
+            {% for stock in portfolio %}
+                <tr>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.name }}</td>
+                    {% if stock.shares > 0 %}
+                        <td>{{ stock.price | usd }}</td>
+                        <td>-</td>
+                    {% endif %}
+                    {% if stock.shares < 0 %}
+                        <td>-</td>
+                        <td>{{ stock.value | usd }}</td>
+                    {% endif %}
+                    {% if stock.shares > 0 %}
+                        <td>{{ stock.shares }}</td>
+                    {% endif %}
+                    {% if stock.shares < 0 %}
+                        <td>{{ -stock.shares }}</td>
+                    {% endif %}
+                    {% if stock.shares > 0 %}
+                        <td>{{ (-stock.shares * stock.price) | usd }}</td>
+                    {% endif %}
+                    {% if stock.shares < 0 %}
+                        <td>{{ (-stock.shares * stock.value) | usd }}</td>
+                    {% endif %}
+                    <td>{{ stock.time }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>Account Overview</h1>
+    </div>
+    <br>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Symbol</th>
+                <th>Stock Name</th>
+                <th>Shares</th>
+                <th>Value</th>
+            </tr>
+            {% for stock in portfolio %}
+                <tr>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.total }}</td>
+                    <td>{{ stock.totalval | usd}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Cash Balance</th>
+                <th>Total Assets</th>
+            </tr>
+            <tr>
+                <th>{{ cash | usd }}</th>
+                <th>{{ net | usd }}</th>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}
